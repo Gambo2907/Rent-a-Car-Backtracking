@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gustavo/Documentos/GitHub/Rent-a-Car-Backtracking/Graph.h
+iostream
+-
+stdlib.h
+/home/gustavo/Documentos/GitHub/Rent-a-Car-Backtracking/stdlib.h
+queue
+-
+list
+-
+stack
+-
+
+/home/gustavo/Documentos/GitHub/Rent-a-Car-Backtracking/main.cpp
+iostream
+-
+stdlib.h
+/home/gustavo/Documentos/GitHub/Rent-a-Car-Backtracking/stdlib.h
+Graph.h
+/home/gustavo/Documentos/GitHub/Rent-a-Car-Backtracking/Graph.h
+

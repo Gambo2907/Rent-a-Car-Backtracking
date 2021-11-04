@@ -13,7 +13,7 @@ bool Graph::Vacio(){
         return false;
     }
 }
-int Graph::Tamaño(){
+int Graph::Tamano(){
     int cont = 0;
     Vertice *aux;
     aux = h;
@@ -243,12 +243,12 @@ void Graph::RecorridoEnProfundidad(Vertice *origen){
     }
 }
 
-bool Comparación(pair <Vertice*, int> a, pair<Vertice*, int> b){
+bool Comparacion(pair <Vertice*, int> a, pair<Vertice*, int> b){
     return a.second < b.second;
 }
 
-void Graph::PrimeroElMejor(Vertice *origen, Vertice *destino){
-    int CostoActual = 0, band, band2 = 0;
+void Graph::Backtracking(Vertice *origen, Vertice *destino){
+    int CostoActual = 0, band, band2 = 0, CostoAnterior;
     Vertice *VerticeActual, *DestinoActual;
     Arista *aux;
     typedef pair<Vertice*, int> VerticeCosto;
@@ -289,31 +289,34 @@ void Graph::PrimeroElMejor(Vertice *origen, Vertice *destino){
 
         while(aux != NULL){
             band = 0;
-            CostoActual = CostoActual + aux->km;
+            CostoActual = CostoAnterior;
+            if(CostoActual < aux->km){
+                CostoActual = aux->km;
+            }
             for(i = ListaCostos.begin(); i != ListaCostos.end(); i++){
-                if(aux->ady = i->first){
+                if(aux->ady == i->first){
                     band = 1;
                     if(CostoActual < i->second){
                         (*i).second = CostoActual;
 
                         for(j=ListaOrdenada.begin(); j != ListaOrdenada.end(); j++){
-                            if(j->first = aux->ady){
+                            if(j->first == aux->ady){
                                 (*j).second = CostoActual;
                             }
                         }
-                        ListaOrdenada.sort(Comparación);
+                        ListaOrdenada.sort(Comparacion);
                         Pila.push(VerticeVertice(VerticeActual, aux->ady));
-                        CostoActual = CostoActual - aux->km;
+                        CostoActual = CostoAnterior;
 
                     }
                 }
             }
-            if(band = 0){
+            if(band == 0){
                 ListaCostos.push_back(VerticeCosto(aux->ady,CostoActual));
                 ListaOrdenada.push_back(VerticeCosto(aux->ady, CostoActual));
-                ListaOrdenada.sort(Comparación);
+                ListaOrdenada.sort(Comparacion);
                 Pila.push(VerticeVertice(VerticeActual,aux->ady));
-                CostoActual = CostoActual - aux->km;
+                CostoActual = CostoAnterior;
             }
 
             aux = aux->sig;

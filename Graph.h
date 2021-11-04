@@ -1,6 +1,7 @@
 #ifndef GRAPH_H
 #define GRAPH_H
 #include <iostream>
+#include "stdlib.h"
 #include <queue>
 #include <list>
 #include <stack>
@@ -24,7 +25,7 @@ class Graph{
     public:
     void Inicializa();
     bool Vacio();
-    int Tamaño();
+    int Tamano();
     Vertice *getVertice(string nombre);
     void InsertaArista(Vertice *origen, Vertice *destino, int km);
     void InsertaVertice(string nombre);
@@ -34,6 +35,6 @@ class Graph{
     void EliminarVertice(Vertice *vert);
     void RecorridoEnAnchura(Vertice *origen);
     void RecorridoEnProfundidad(Vertice *origen);
-    void PrimeroElMejor(Vertice *origen, Vertice *destino);
+    void Backtracking(Vertice *origen, Vertice *destino);
 };
 #endif //GRAPH_H
