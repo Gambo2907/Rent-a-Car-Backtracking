@@ -35,6 +35,6 @@ class Graph{
     void EliminarVertice(Vertice *vert);
     void RecorridoEnAnchura(Vertice *origen);
     void RecorridoEnProfundidad(Vertice *origen);
-    void Backtracking(Vertice *origen, Vertice *destino);
+    void RutaMasCorta(Vertice *origen, Vertice *destino);
 };
 #endif //GRAPH_H

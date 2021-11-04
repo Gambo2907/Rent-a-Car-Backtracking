@@ -16,13 +16,13 @@ int main()
     }
 
     srand((unsigned int)time(NULL));
-
+    
     int y = 0;
     int i, j, f;
     while(y<(Vert*2)-2){
         i = rand()%Vert;
         j = rand()%Vert;
-        f = (rand()%30)+1;
+        f = (rand()%50)+1;
         if(i==j){
             continue;
         }
@@ -45,8 +45,7 @@ int main()
         cout<<"No existe"<<endl;
     }
     else{
-        G.Backtracking(G.getVertice(O),G.getVertice(D));
-        cout<<f<<endl;
+        G.RutaMasCorta(G.getVertice(O),G.getVertice(D));
     }
     return 0;
 }

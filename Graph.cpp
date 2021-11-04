@@ -81,7 +81,7 @@ void Graph::ListaAdyacencia(){
         cout<<Vertaux->nombre<<"->";
         Aristaux = Vertaux->ady;
         while(Aristaux != NULL){
-            cout<<Aristaux->ady->nombre<<"->";
+            cout<<Aristaux->km<<" km "<<Aristaux->ady->nombre<<",";
             Aristaux = Aristaux->sig;
         }
         Vertaux = Vertaux->sig;
@@ -247,8 +247,8 @@ bool Comparacion(pair <Vertice*, int> a, pair<Vertice*, int> b){
     return a.second < b.second;
 }
 
-void Graph::Backtracking(Vertice *origen, Vertice *destino){
-    int CostoActual = 0, band, band2 = 0, CostoAnterior;
+void Graph::RutaMasCorta(Vertice *origen, Vertice *destino){
+    int CostoActual = 0, band, band2 = 0, necesario = 0, Anterior = 0, suma = 0;
     Vertice *VerticeActual, *DestinoActual;
     Arista *aux;
     typedef pair<Vertice*, int> VerticeCosto;
@@ -289,7 +289,8 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
 
         while(aux != NULL){
             band = 0;
-            CostoActual = CostoAnterior;
+            CostoActual = CostoActual + aux->km;
+           
             if(CostoActual < aux->km){
                 CostoActual = aux->km;
             }
@@ -302,11 +303,12 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
                         for(j=ListaOrdenada.begin(); j != ListaOrdenada.end(); j++){
                             if(j->first == aux->ady){
                                 (*j).second = CostoActual;
+                                
                             }
                         }
                         ListaOrdenada.sort(Comparacion);
                         Pila.push(VerticeVertice(VerticeActual, aux->ady));
-                        CostoActual = CostoAnterior;
+                        CostoActual = CostoActual - aux->km;
 
                     }
                 }
@@ -316,14 +318,15 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
                 ListaOrdenada.push_back(VerticeCosto(aux->ady, CostoActual));
                 ListaOrdenada.sort(Comparacion);
                 Pila.push(VerticeVertice(VerticeActual,aux->ady));
-                CostoActual = CostoAnterior;
+                CostoActual = CostoActual - aux->km;
             }
-
+            
             aux = aux->sig;
         }
 
-
     }
+    cout<<"\r\n"<<"El recorrido fue de "<<CostoActual<<" km"<<"\r\n";
+    cout<<"\r\n"<<"Se necesita un tanque de: "<<necesario<<" para realizar la ruta"<<"\r\n";
     if(band2 == 0){
         cout<<"No se encontró una ruta"<<endl;
     }
