@@ -170,7 +170,7 @@ bool Comparacion(pair <Vertice*, int> a, pair<Vertice*, int> b){
 
 void Graph::Backtracking(Vertice *origen, Vertice *destino){
     string Destino;
-    int KmRecorridos = 0, band, band2 = 0, necesario = 0, Recorrido = 0, suma = 0;
+    int KmRecorridos = 0, band, band2 = 0, necesario = 0, Recorrido = 0, suma = 0, suma2 = 0;
     Vertice *VerticeActual, *DestinoActual, *puente, *puente2;
     Arista *aux, *aux_2;
     typedef pair<Vertice*, int> VerticeKM;
@@ -189,7 +189,7 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
         VerticeActual = ListaOrdenada.front().first;
         KmRecorridos = ListaOrdenada.front().second;
         ListaOrdenada.pop_front();
-        necesario = ListaOrdenadaKm.back();
+        necesario = ListaOrdenadaKm.front();
 
         if(VerticeActual == destino){
             cout<<"\r\n"<<"La ruta total es de: "<<KmRecorridos<<" km"<<"\r\n";
@@ -210,6 +210,7 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
             }
             
             
+            
             break;
         }
         
@@ -225,21 +226,20 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
 
             }
             for(i = ListaKM.begin(); i != ListaKM.end(); i++){ 
+                ListaOrdenadaKm.push_front(i->second);
                 if(aux->ady == i->first){
                     band = 1;
                     if(KmRecorridos < i->second){
-                        (*i).second = KmRecorridos;
-                        ListaOrdenadaKm.push_back(aux->km); 
+                        (*i).second = KmRecorridos; 
                         
 
                         for(j=ListaOrdenada.begin(); j != ListaOrdenada.end(); j++){
+                
                             if(j->first == aux->ady){
                                 (*j).second = KmRecorridos;
-                                ListaOrdenadaKm.push_back(aux->km);
-                                
-                                
-                                
+                                //ListaOrdenadaKm.push_front(KmRecorridos);
                             }
+                                
                         }
                         ListaOrdenada.sort(Comparacion);
                         Pila.push(VerticeVertice(VerticeActual, aux->ady));
@@ -248,6 +248,7 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
 
 
                     }
+                    
                 }
             }
             if(band == 0){
@@ -274,5 +275,6 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
         cout<<"No se encontró una ruta"<<endl;
     }
     cout<<"\r\n"<<"Se necesita un tanque de: "<<necesario<<" para realizar la ruta"<<"\r\n";
+    
 }
 
