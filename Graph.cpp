@@ -170,15 +170,15 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
     int KmRecorridos = 0, band, band2 = 0, necesario = 0, Recorrido = 0, suma = 0;
     Vertice *VerticeActual, *DestinoActual, *puente;
     Arista *aux;
-    typedef pair<Vertice*, int> VerticeCosto;
+    typedef pair<Vertice*, int> VerticeKM;
     typedef pair<Vertice*, Vertice*> VerticeVertice;
-    list<VerticeCosto> ListaCostos;
-    list<VerticeCosto> ListaOrdenada;
+    list<VerticeKM> ListaKM;
+    list<VerticeKM> ListaOrdenada;
     stack<VerticeVertice> Pila;
-    list<VerticeCosto>::iterator i, j;
+    list<VerticeKM>::iterator i, j;
 
-    ListaCostos.push_back(VerticeCosto(origen,0));
-    ListaOrdenada.push_back(VerticeCosto(origen,0));
+    ListaKM.push_back(VerticeKM(origen,0));
+    ListaOrdenada.push_back(VerticeKM(origen,0));
 
     while(!ListaOrdenada.empty()){
 
@@ -222,7 +222,7 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
                 
 
             }
-            for(i = ListaCostos.begin(); i != ListaCostos.end(); i++){
+            for(i = ListaKM.begin(); i != ListaKM.end(); i++){
                 if(aux->ady == i->first){
                     band = 1;
                     if(KmRecorridos < i->second){
@@ -245,8 +245,8 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
                 }
             }
             if(band == 0){
-                ListaCostos.push_back(VerticeCosto(aux->ady,KmRecorridos));
-                ListaOrdenada.push_back(VerticeCosto(aux->ady, KmRecorridos));
+                ListaKM.push_back(VerticeKM(aux->ady,KmRecorridos));
+                ListaOrdenada.push_back(VerticeKM(aux->ady, KmRecorridos));
                 ListaOrdenada.sort(Comparacion);
                 Pila.push(VerticeVertice(VerticeActual,aux->ady));
                 KmRecorridos = KmRecorridos - aux->km;
