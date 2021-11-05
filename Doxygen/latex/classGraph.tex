@@ -1,0 +1,180 @@
+\hypertarget{classGraph}{}\doxysection{Graph Class Reference}
+\label{classGraph}\index{Graph@{Graph}}
+
+
+clase en la cual se crean todas las funciones principales del grafo así como el algoritmo de backtracking.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_a73dd6235ecea118aa2156b47296b5649}\label{classGraph_a73dd6235ecea118aa2156b47296b5649}} 
+void {\bfseries Inicializa} ()
+\begin{DoxyCompactList}\small\item\em Método que inicializa el grafo. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_ad079640041c74e3dbc4e7f20e06034ff}{Vacio}} ()
+\begin{DoxyCompactList}\small\item\em Método que muestra si el grafo está vacío o no. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGraph_abe1bdb87bca7610be1abba1e41f70737}{Tamano}} ()
+\begin{DoxyCompactList}\small\item\em Retorna el tamaño del grafo. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classVertice}{Vertice}} $\ast$ \mbox{\hyperlink{classGraph_af860d98fd99610628f782a37e6f6ef20}{get\+Vertice}} (string nombre)
+\begin{DoxyCompactList}\small\item\em Get the \mbox{\hyperlink{classVertice}{Vertice}} object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a59f676548dd267b2710d872d9ee8c2db}{Inserta\+Arista}} (\mbox{\hyperlink{classVertice}{Vertice}} $\ast$origen, \mbox{\hyperlink{classVertice}{Vertice}} $\ast$destino, int km)
+\begin{DoxyCompactList}\small\item\em Inserta una arista en el grafo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a471e17d370a6a14c55851b99577b333b}{Inserta\+Vertice}} (string nombre)
+\begin{DoxyCompactList}\small\item\em Inserta un vértice en el grafo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_aca967ce278fc7a81b148d6a6bab1e0d5}\label{classGraph_aca967ce278fc7a81b148d6a6bab1e0d5}} 
+void {\bfseries Lista\+Adyacencia} ()
+\begin{DoxyCompactList}\small\item\em Método que muestra cada vértice con su adyacencia respectiva. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_ae9d4a896f2f0db9e6113e5ccbd02f3fd}{Eliminar\+Arista}} (\mbox{\hyperlink{classVertice}{Vertice}} $\ast$origen, \mbox{\hyperlink{classVertice}{Vertice}} $\ast$destino)
+\begin{DoxyCompactList}\small\item\em Elimina una arista del grafo. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_a78d3d96cdcb91d6264de1cb69b96a190}\label{classGraph_a78d3d96cdcb91d6264de1cb69b96a190}} 
+void {\bfseries Anular} ()
+\begin{DoxyCompactList}\small\item\em Anula una adyacencia. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_aae61f0c61353954351d93b682ed448a8}{Eliminar\+Vertice}} (\mbox{\hyperlink{classVertice}{Vertice}} $\ast$vert)
+\begin{DoxyCompactList}\small\item\em Elimina un vértice. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_acb1733a2bae151897f55a21a711590e6}{Backtracking}} (\mbox{\hyperlink{classVertice}{Vertice}} $\ast$origen, \mbox{\hyperlink{classVertice}{Vertice}} $\ast$destino)
+\begin{DoxyCompactList}\small\item\em Método principal donde se obtiene la ruta más corta para llegar de un vértice a otro además de generar el tanque mínimo necesario. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+clase en la cual se crean todas las funciones principales del grafo así como el algoritmo de backtracking. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraph_acb1733a2bae151897f55a21a711590e6}\label{classGraph_acb1733a2bae151897f55a21a711590e6}} 
+\index{Graph@{Graph}!Backtracking@{Backtracking}}
+\index{Backtracking@{Backtracking}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Backtracking()}{Backtracking()}}
+{\footnotesize\ttfamily void Graph\+::\+Backtracking (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertice}{Vertice}} $\ast$}]{origen,  }\item[{\mbox{\hyperlink{classVertice}{Vertice}} $\ast$}]{destino }\end{DoxyParamCaption})}
+
+
+
+Método principal donde se obtiene la ruta más corta para llegar de un vértice a otro además de generar el tanque mínimo necesario. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origen} & inicio del recorrido. \\
+\hline
+{\em destino} & final del recorrido. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_ae9d4a896f2f0db9e6113e5ccbd02f3fd}\label{classGraph_ae9d4a896f2f0db9e6113e5ccbd02f3fd}} 
+\index{Graph@{Graph}!EliminarArista@{EliminarArista}}
+\index{EliminarArista@{EliminarArista}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{EliminarArista()}{EliminarArista()}}
+{\footnotesize\ttfamily void Graph\+::\+Eliminar\+Arista (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertice}{Vertice}} $\ast$}]{origen,  }\item[{\mbox{\hyperlink{classVertice}{Vertice}} $\ast$}]{destino }\end{DoxyParamCaption})}
+
+
+
+Elimina una arista del grafo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origen} & inicio \\
+\hline
+{\em destino} & final \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_aae61f0c61353954351d93b682ed448a8}\label{classGraph_aae61f0c61353954351d93b682ed448a8}} 
+\index{Graph@{Graph}!EliminarVertice@{EliminarVertice}}
+\index{EliminarVertice@{EliminarVertice}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{EliminarVertice()}{EliminarVertice()}}
+{\footnotesize\ttfamily void Graph\+::\+Eliminar\+Vertice (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertice}{Vertice}} $\ast$}]{vert }\end{DoxyParamCaption})}
+
+
+
+Elimina un vértice. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vert} & vértice que se quiere eliminar \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_af860d98fd99610628f782a37e6f6ef20}\label{classGraph_af860d98fd99610628f782a37e6f6ef20}} 
+\index{Graph@{Graph}!getVertice@{getVertice}}
+\index{getVertice@{getVertice}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getVertice()}{getVertice()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classVertice}{Vertice}} $\ast$ Graph\+::get\+Vertice (\begin{DoxyParamCaption}\item[{string}]{nombre }\end{DoxyParamCaption})}
+
+
+
+Get the \mbox{\hyperlink{classVertice}{Vertice}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre} & nombre del vértice específico \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Vertice$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_a59f676548dd267b2710d872d9ee8c2db}\label{classGraph_a59f676548dd267b2710d872d9ee8c2db}} 
+\index{Graph@{Graph}!InsertaArista@{InsertaArista}}
+\index{InsertaArista@{InsertaArista}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{InsertaArista()}{InsertaArista()}}
+{\footnotesize\ttfamily void Graph\+::\+Inserta\+Arista (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertice}{Vertice}} $\ast$}]{origen,  }\item[{\mbox{\hyperlink{classVertice}{Vertice}} $\ast$}]{destino,  }\item[{int}]{km }\end{DoxyParamCaption})}
+
+
+
+Inserta una arista en el grafo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em origen} & inicio \\
+\hline
+{\em destino} & final \\
+\hline
+{\em km} & kilometros que se quieren añadir \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_a471e17d370a6a14c55851b99577b333b}\label{classGraph_a471e17d370a6a14c55851b99577b333b}} 
+\index{Graph@{Graph}!InsertaVertice@{InsertaVertice}}
+\index{InsertaVertice@{InsertaVertice}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{InsertaVertice()}{InsertaVertice()}}
+{\footnotesize\ttfamily void Graph\+::\+Inserta\+Vertice (\begin{DoxyParamCaption}\item[{string}]{nombre }\end{DoxyParamCaption})}
+
+
+
+Inserta un vértice en el grafo. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre} & nombre que se quiere dar al nuevo vértice \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classGraph_abe1bdb87bca7610be1abba1e41f70737}\label{classGraph_abe1bdb87bca7610be1abba1e41f70737}} 
+\index{Graph@{Graph}!Tamano@{Tamano}}
+\index{Tamano@{Tamano}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Tamano()}{Tamano()}}
+{\footnotesize\ttfamily int Graph\+::\+Tamano (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retorna el tamaño del grafo. 
+
+\begin{DoxyReturn}{Returns}
+int tamaño del grafo 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_ad079640041c74e3dbc4e7f20e06034ff}\label{classGraph_ad079640041c74e3dbc4e7f20e06034ff}} 
+\index{Graph@{Graph}!Vacio@{Vacio}}
+\index{Vacio@{Vacio}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{Vacio()}{Vacio()}}
+{\footnotesize\ttfamily bool Graph\+::\+Vacio (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Método que muestra si el grafo está vacío o no. 
+
+\begin{DoxyReturn}{Returns}
+true El grafo está vacío 
+
+false el grafo tiene vértices y aristas 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{Graph_8h}{Graph.\+h}}\item 
+Graph.\+cpp\end{DoxyCompactItemize}

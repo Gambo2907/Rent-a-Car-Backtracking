@@ -160,96 +160,15 @@ void Graph::EliminarVertice(Vertice *vert){
     }
 }
 
-void Graph::RecorridoEnAnchura(Vertice *origen){
-    int band, band2;
-    Vertice *actual;
-    queue<Vertice*> cola;
-    list<Vertice*> lista;
-    list<Vertice*>::iterator i;
-    cola.push(origen);
-
-    while(!cola.empty()){
-        band = 0;
-        actual = cola.front();
-        cola.pop();
-
-        for(i = lista.begin(); i != lista.end(); i++){
-            if(*i == actual){
-                band = 1;
-            }
-        }
-        if(band == 0){
-            cout<<actual->nombre<<",";
-            lista.push_back(actual);
-
-            Arista *aux;
-            aux = actual->ady;
-            while(aux != NULL){
-                band2 = 0;
-                for(i = lista.begin(); i != lista.end(); i++){
-                    if(aux->ady == *i){
-                        band2 = 1;
-                    }
-                }
-                if(band2 == 0){
-                    cola.push(aux->ady);
-                }
-                aux = aux->sig;
-            }
-        }
-
-    }
-
-}
-void Graph::RecorridoEnProfundidad(Vertice *origen){
-    int band, band2;
-    Vertice *actual;
-    stack<Vertice*> pila;
-    list<Vertice*> lista;
-    list<Vertice*>::iterator i;
-    pila.push(origen);
-    while(!pila.empty()){
-        band = 0;
-        actual = pila.top();
-        pila.pop();
-
-        for(i=lista.begin(); i != lista.end(); i++){
-
-            if(*i == actual){
-                band = 1;
-            }
-        }
-        if(band == 0){
-            cout<<actual->nombre<<",";
-            lista.push_back(actual);
-
-            Arista *aux;
-            aux = actual->ady;
-
-            while(aux != NULL){
-                band2 = 0;
-                for(i=lista.begin(); i != lista.end(); i++){
-                    if(*i == aux->ady){
-                        band2 = 1;
-                    }
-                }
-                if(band == 0){
-                    pila.push(aux->ady);
-                }
-                aux = aux->sig;
-            }
-        }
-
-    }
-}
 
 bool Comparacion(pair <Vertice*, int> a, pair<Vertice*, int> b){
     return a.second < b.second;
 }
 
-void Graph::RutaMasCorta(Vertice *origen, Vertice *destino){
-    int CostoActual = 0, band, band2 = 0, necesario = 0, Anterior = 0, suma = 0;
-    Vertice *VerticeActual, *DestinoActual;
+void Graph::Backtracking(Vertice *origen, Vertice *destino){
+    string Destino;
+    int KmRecorridos = 0, band, band2 = 0, necesario = 0, Recorrido = 0, suma = 0;
+    Vertice *VerticeActual, *DestinoActual, *puente;
     Arista *aux;
     typedef pair<Vertice*, int> VerticeCosto;
     typedef pair<Vertice*, Vertice*> VerticeVertice;
@@ -264,7 +183,7 @@ void Graph::RutaMasCorta(Vertice *origen, Vertice *destino){
     while(!ListaOrdenada.empty()){
 
         VerticeActual = ListaOrdenada.front().first;
-        CostoActual = ListaOrdenada.front().second;
+        KmRecorridos = ListaOrdenada.front().second;
         ListaOrdenada.pop_front();
 
         if(VerticeActual == destino){
@@ -274,7 +193,8 @@ void Graph::RutaMasCorta(Vertice *origen, Vertice *destino){
 
             while(!Pila.empty()){
                 cout<<DestinoActual->nombre<<"<-";
-
+                
+            
                 while(!Pila.empty() && Pila.top().second != DestinoActual){
                     Pila.pop();
                 }
@@ -282,52 +202,67 @@ void Graph::RutaMasCorta(Vertice *origen, Vertice *destino){
                 if(!Pila.empty()){
                     DestinoActual = Pila.top().first;
                 }
+                
             }
+            cout<<"\r\n"<<"La ruta total es de: "<<KmRecorridos<<" km"<<"\r\n";
+            cout<<"\r\n"<<"Se necesita un tanque de: "<<necesario<<" para realizar la ruta"<<"\r\n";
             break;
         }
+        
         aux = VerticeActual->ady;
-
+        
         while(aux != NULL){
             band = 0;
-            CostoActual = CostoActual + aux->km;
+            KmRecorridos = KmRecorridos + aux->km;
+            
            
-            if(CostoActual < aux->km){
-                CostoActual = aux->km;
+            if(KmRecorridos < aux->km){
+                KmRecorridos = aux->km;
+                suma = KmRecorridos;
+                
+
             }
             for(i = ListaCostos.begin(); i != ListaCostos.end(); i++){
                 if(aux->ady == i->first){
                     band = 1;
-                    if(CostoActual < i->second){
-                        (*i).second = CostoActual;
+                    if(KmRecorridos < i->second){
+                        (*i).second = KmRecorridos;   
 
                         for(j=ListaOrdenada.begin(); j != ListaOrdenada.end(); j++){
                             if(j->first == aux->ady){
-                                (*j).second = CostoActual;
+                                (*j).second = KmRecorridos;
+                                suma = KmRecorridos;
+                                
                                 
                             }
                         }
                         ListaOrdenada.sort(Comparacion);
                         Pila.push(VerticeVertice(VerticeActual, aux->ady));
-                        CostoActual = CostoActual - aux->km;
+                        KmRecorridos = KmRecorridos - aux->km;
+
 
                     }
                 }
             }
             if(band == 0){
-                ListaCostos.push_back(VerticeCosto(aux->ady,CostoActual));
-                ListaOrdenada.push_back(VerticeCosto(aux->ady, CostoActual));
+                ListaCostos.push_back(VerticeCosto(aux->ady,KmRecorridos));
+                ListaOrdenada.push_back(VerticeCosto(aux->ady, KmRecorridos));
                 ListaOrdenada.sort(Comparacion);
                 Pila.push(VerticeVertice(VerticeActual,aux->ady));
-                CostoActual = CostoActual - aux->km;
+                KmRecorridos = KmRecorridos - aux->km;
+                
             }
-            
+            puente = Pila.top().second;
+            Destino = puente->nombre;
+            Recorrido = aux->km;
             aux = aux->sig;
+            cout<<"\r\n"<<"De: "<<VerticeActual->nombre<< "->"<<Destino<<" hay "<<Recorrido<<" km"<<"\r\n";
+        
         }
-
+        
     }
-    cout<<"\r\n"<<"El recorrido fue de "<<CostoActual<<" km"<<"\r\n";
-    cout<<"\r\n"<<"Se necesita un tanque de: "<<necesario<<" para realizar la ruta"<<"\r\n";
     if(band2 == 0){
         cout<<"No se encontró una ruta"<<endl;
     }
+    
 }

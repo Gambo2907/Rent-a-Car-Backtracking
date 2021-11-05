@@ -1,0 +1,43 @@
+\hypertarget{Graph_8h_source}{}\doxysection{Graph.\+h}
+\mbox{\hyperlink{Graph_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{9 \textcolor{preprocessor}{\#ifndef GRAPH\_H}}
+\DoxyCodeLine{10 \textcolor{preprocessor}{\#define GRAPH\_H}}
+\DoxyCodeLine{11 \textcolor{preprocessor}{\#include <iostream>}}
+\DoxyCodeLine{12 \textcolor{preprocessor}{\#include "{}stdlib.h"{}}}
+\DoxyCodeLine{13 \textcolor{preprocessor}{\#include <queue>}}
+\DoxyCodeLine{14 \textcolor{preprocessor}{\#include <list>}}
+\DoxyCodeLine{15 \textcolor{preprocessor}{\#include <stack>}}
+\DoxyCodeLine{16 \textcolor{keyword}{using namespace }std;}
+\DoxyCodeLine{22 \textcolor{keyword}{class }\mbox{\hyperlink{classArista}{Arista}};}
+\DoxyCodeLine{28 \textcolor{keyword}{class }\mbox{\hyperlink{classVertice}{Vertice}}\{}
+\DoxyCodeLine{33     \mbox{\hyperlink{classVertice}{Vertice}} *sig;}
+\DoxyCodeLine{38     \mbox{\hyperlink{classArista}{Arista}} *ady;}
+\DoxyCodeLine{43     \textcolor{keywordtype}{string} nombre;}
+\DoxyCodeLine{44     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classGraph}{Graph}};}
+\DoxyCodeLine{45 \};}
+\DoxyCodeLine{46 \textcolor{keyword}{class }\mbox{\hyperlink{classArista}{Arista}} \{}
+\DoxyCodeLine{51     \mbox{\hyperlink{classArista}{Arista}} *sig;}
+\DoxyCodeLine{56     \mbox{\hyperlink{classVertice}{Vertice}} *ady;}
+\DoxyCodeLine{61     \textcolor{keywordtype}{int} km;}
+\DoxyCodeLine{62     \textcolor{keyword}{friend} \textcolor{keyword}{class }\mbox{\hyperlink{classGraph}{Graph}};}
+\DoxyCodeLine{63 \};}
+\DoxyCodeLine{68 \textcolor{keyword}{class }\mbox{\hyperlink{classGraph}{Graph}}\{}
+\DoxyCodeLine{73     \mbox{\hyperlink{classVertice}{Vertice}} *h;}
+\DoxyCodeLine{74     \textcolor{keyword}{public}:}
+\DoxyCodeLine{79     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_a73dd6235ecea118aa2156b47296b5649}{Inicializa}}();}
+\DoxyCodeLine{86     \textcolor{keywordtype}{bool} \mbox{\hyperlink{classGraph_ad079640041c74e3dbc4e7f20e06034ff}{Vacio}}();}
+\DoxyCodeLine{92     \textcolor{keywordtype}{int} \mbox{\hyperlink{classGraph_abe1bdb87bca7610be1abba1e41f70737}{Tamano}}();}
+\DoxyCodeLine{99     \mbox{\hyperlink{classVertice}{Vertice}} *\mbox{\hyperlink{classGraph_af860d98fd99610628f782a37e6f6ef20}{getVertice}}(\textcolor{keywordtype}{string} nombre);}
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_a59f676548dd267b2710d872d9ee8c2db}{InsertaArista}}(\mbox{\hyperlink{classVertice}{Vertice}} *origen, \mbox{\hyperlink{classVertice}{Vertice}} *destino, \textcolor{keywordtype}{int} km);}
+\DoxyCodeLine{113     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_a471e17d370a6a14c55851b99577b333b}{InsertaVertice}}(\textcolor{keywordtype}{string} nombre);}
+\DoxyCodeLine{118     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_aca967ce278fc7a81b148d6a6bab1e0d5}{ListaAdyacencia}}();}
+\DoxyCodeLine{125     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_ae9d4a896f2f0db9e6113e5ccbd02f3fd}{EliminarArista}}(\mbox{\hyperlink{classVertice}{Vertice}} *origen, \mbox{\hyperlink{classVertice}{Vertice}} *destino);}
+\DoxyCodeLine{130     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_a78d3d96cdcb91d6264de1cb69b96a190}{Anular}}();}
+\DoxyCodeLine{136     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_aae61f0c61353954351d93b682ed448a8}{EliminarVertice}}(\mbox{\hyperlink{classVertice}{Vertice}} *vert);}
+\DoxyCodeLine{144     \textcolor{keywordtype}{void} \mbox{\hyperlink{classGraph_acb1733a2bae151897f55a21a711590e6}{Backtracking}}(\mbox{\hyperlink{classVertice}{Vertice}} *origen, \mbox{\hyperlink{classVertice}{Vertice}} *destino);}
+\DoxyCodeLine{145 \};}
+\DoxyCodeLine{146 \textcolor{preprocessor}{\#endif }\textcolor{comment}{//GRAPH\_H}}
+
+\end{DoxyCode}

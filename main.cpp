@@ -45,7 +45,7 @@ int main()
         cout<<"No existe"<<endl;
     }
     else{
-        G.RutaMasCorta(G.getVertice(O),G.getVertice(D));
+        G.Backtracking(G.getVertice(O),G.getVertice(D));
     }
     return 0;
 }
