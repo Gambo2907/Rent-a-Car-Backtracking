@@ -142,5 +142,6 @@ class Graph{
      * @param destino final del recorrido.
      */
     void Backtracking(Vertice *origen, Vertice *destino);
+    
 };
 #endif //GRAPH_H

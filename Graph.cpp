@@ -60,6 +60,7 @@ void Graph::InsertaArista(Vertice *origen, Vertice *destino, int km){
     nueva->ady = NULL;
 
     Arista *aux;
+    
     aux = origen->ady;
     if(aux == NULL){
         origen->ady = nueva;
@@ -165,14 +166,17 @@ bool Comparacion(pair <Vertice*, int> a, pair<Vertice*, int> b){
     return a.second < b.second;
 }
 
+
+
 void Graph::Backtracking(Vertice *origen, Vertice *destino){
     string Destino;
     int KmRecorridos = 0, band, band2 = 0, necesario = 0, Recorrido = 0, suma = 0;
-    Vertice *VerticeActual, *DestinoActual, *puente;
-    Arista *aux;
+    Vertice *VerticeActual, *DestinoActual, *puente, *puente2;
+    Arista *aux, *aux_2;
     typedef pair<Vertice*, int> VerticeKM;
     typedef pair<Vertice*, Vertice*> VerticeVertice;
     list<VerticeKM> ListaKM;
+    list<int> ListaOrdenadaKm;
     list<VerticeKM> ListaOrdenada;
     stack<VerticeVertice> Pila;
     list<VerticeKM>::iterator i, j;
@@ -185,12 +189,12 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
         VerticeActual = ListaOrdenada.front().first;
         KmRecorridos = ListaOrdenada.front().second;
         ListaOrdenada.pop_front();
+        necesario = ListaOrdenadaKm.back();
 
         if(VerticeActual == destino){
-            
+            cout<<"\r\n"<<"La ruta total es de: "<<KmRecorridos<<" km"<<"\r\n";
             band2 = 1;
             DestinoActual = destino;
-
             while(!Pila.empty()){
                 cout<<DestinoActual->nombre<<"<-";
                 
@@ -204,8 +208,8 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
                 }
                 
             }
-            cout<<"\r\n"<<"La ruta total es de: "<<KmRecorridos<<" km"<<"\r\n";
-            cout<<"\r\n"<<"Se necesita un tanque de: "<<necesario<<" para realizar la ruta"<<"\r\n";
+            
+            
             break;
         }
         
@@ -214,24 +218,25 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
         while(aux != NULL){
             band = 0;
             KmRecorridos = KmRecorridos + aux->km;
-            
            
             if(KmRecorridos < aux->km){
                 KmRecorridos = aux->km;
-                suma = KmRecorridos;
                 
 
             }
-            for(i = ListaKM.begin(); i != ListaKM.end(); i++){
+            for(i = ListaKM.begin(); i != ListaKM.end(); i++){ 
                 if(aux->ady == i->first){
                     band = 1;
                     if(KmRecorridos < i->second){
-                        (*i).second = KmRecorridos;   
+                        (*i).second = KmRecorridos;
+                        ListaOrdenadaKm.push_back(aux->km); 
+                        
 
                         for(j=ListaOrdenada.begin(); j != ListaOrdenada.end(); j++){
                             if(j->first == aux->ady){
                                 (*j).second = KmRecorridos;
-                                suma = KmRecorridos;
+                                ListaOrdenadaKm.push_back(aux->km);
+                                
                                 
                                 
                             }
@@ -239,6 +244,7 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
                         ListaOrdenada.sort(Comparacion);
                         Pila.push(VerticeVertice(VerticeActual, aux->ady));
                         KmRecorridos = KmRecorridos - aux->km;
+                        
 
 
                     }
@@ -251,18 +257,22 @@ void Graph::Backtracking(Vertice *origen, Vertice *destino){
                 Pila.push(VerticeVertice(VerticeActual,aux->ady));
                 KmRecorridos = KmRecorridos - aux->km;
                 
+                
             }
             puente = Pila.top().second;
             Destino = puente->nombre;
             Recorrido = aux->km;
             aux = aux->sig;
+            
             cout<<"\r\n"<<"De: "<<VerticeActual->nombre<< "->"<<Destino<<" hay "<<Recorrido<<" km"<<"\r\n";
-        
+            
         }
+        
         
     }
     if(band2 == 0){
         cout<<"No se encontró una ruta"<<endl;
     }
-    
+    cout<<"\r\n"<<"Se necesita un tanque de: "<<necesario<<" para realizar la ruta"<<"\r\n";
 }
+

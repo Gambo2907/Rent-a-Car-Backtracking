@@ -46,6 +46,7 @@ int main()
     }
     else{
         G.Backtracking(G.getVertice(O),G.getVertice(D));
+        
     }
     return 0;
 }
